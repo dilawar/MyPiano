@@ -45,6 +45,10 @@ def play(note, duration):
     notePath = find_note(note)
     return play_note_aplay(notePath, duration)
 
+def play_midi(midifile):
+    # Play a midi file. Requires module to read a midi file.
+    pass
+
 def main():
     note = sys.argv[1]
     duration = float(sys.argv[2])
