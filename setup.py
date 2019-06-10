@@ -25,7 +25,7 @@ setuptools.setup(
     package_dir = { 'MyPiano' : 'MyPiano' },
     package_data = { 'MyPiano' : 'data/*/*/*.wav' },
     include_package_data = True,
-    install_requires = [ 'mido' ],
+    install_requires = [ 'mido', 'soundfile', 'sounddevice' ],
     zip_safe = False,
     author = "Dilawar Singh",
     author_email = "dilawars@ncbs.res.in",

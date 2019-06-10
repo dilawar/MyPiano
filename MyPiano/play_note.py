@@ -11,20 +11,23 @@ __email__            = "dilawars@ncbs.res.in"
 __status__           = "Development"
 
 import sys
-import subprocess
 import re
+import time
 from pathlib import Path
+import sounddevice as sd
+import soundfile as sf
 
-intrument_ = 'KawaiUprightPiano-20180102'
-notedir_ = Path(__file__).resolve().parent / 'data' / intrument_ / 'samples'
+#  intrument_ = 'KawaiUprightPiano'
+#  notedir_ = Path(__file__).resolve().parent / 'data' / intrument_ / 'samples'
+notedir_ = Path(__file__).resolve().parent / 'data' / 'FreeSound'
 notes_ = {}
 
 def note_name(x):
     xPath = Path(x).name
-    noteName = re.search( r'[ABCDEF]#?\d', xPath)
+    noteName = re.search( r'(?P<name>[a-gA-G]#?\d).wav', xPath)
     if not noteName:
         return None
-    return noteName.group(0)
+    return noteName.group('name').upper()
 
 def find_note(note):
     global notes_
@@ -36,18 +39,24 @@ def find_note(note):
     return notes_.get(note, None)
 
 def play_note_aplay(notePath, duration):
+    import subprocess
     cmd = ["aplay", str(notePath), "--duration", f'{int(duration):d}' ]
     # Do not block
     subprocess.Popen( cmd , shell = False)
+    time.sleep(duration)
+    return True
+
+def play_note_sounddevice(notePath, duration):
+    data, fs = sf.read(notePath, dtype='float32')
+    sd.play(data, fs)
+    time.sleep(duration)
     return True
 
 def play(note, duration):
     notePath = find_note(note)
-    return play_note_aplay(notePath, duration)
-
-def play_midi(midifile):
-    # Play a midi file. Requires module to read a midi file.
-    pass
+    assert notePath, f"{note} not found: {notes_}" 
+    #  return play_note_aplay(notePath, duration)
+    return play_note_sounddevice(notePath, duration)
 
 def main():
     note = sys.argv[1]
