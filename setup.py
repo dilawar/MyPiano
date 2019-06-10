@@ -32,4 +32,7 @@ setuptools.setup(
     url = "http://github.com/dilawar/MyPiano",
     license='GPLv3',
     classifiers=classifiers,
+    entry_points={
+        'console_scripts' : [ 'mypiano = MyPiano.main' ]
+        },
 )

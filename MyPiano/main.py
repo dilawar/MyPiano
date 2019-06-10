@@ -33,7 +33,7 @@ if __name__ == '__main__':
             , help = 'Midi file to play'
             )
     parser.add_argument('--note', '-n'
-            , required = False,
+            , required = False, default = 'A0'
             , help = 'A note to play'
             )
     parser.add_argument('--duration', '-n'
