@@ -1,0 +1,55 @@
+"""play.py: 
+
+Play a note for given duration.
+"""
+    
+__author__           = "Dilawar Singh"
+__copyright__        = "Copyright 2017-, Dilawar Singh"
+__version__          = "1.0.0"
+__maintainer__       = "Dilawar Singh"
+__email__            = "dilawars@ncbs.res.in"
+__status__           = "Development"
+
+import sys
+import subprocess
+import re
+from pathlib import Path
+
+intrument_ = 'KawaiUprightPiano-20180102'
+notedir_ = Path(__file__).resolve().parent / 'data' / intrument_ / 'samples'
+notes_ = {}
+
+def note_name(x):
+    xPath = Path(x).name
+    noteName = re.search( r'[ABCDEF]#?\d', xPath)
+    if not noteName:
+        return None
+    return noteName.group(0)
+
+def find_note(note):
+    global notes_
+    global notedir_
+    # Build the dictionary of notes only once.
+    if not notes_:
+        assert notedir_.exists(), notedir_
+        notes_ = { note_name(x) : x for x in notedir_.glob( '*.wav') }
+    return notes_.get(note, None)
+
+def play_note_aplay(notePath, duration):
+    cmd = ["aplay", str(notePath), "--duration", f'{int(duration):d}' ]
+    # Do not block
+    subprocess.Popen( cmd , shell = False)
+    return True
+
+def play(note, duration):
+    notePath = find_note(note)
+    return play_note_aplay(notePath, duration)
+
+def main():
+    note = sys.argv[1]
+    duration = float(sys.argv[2])
+    #  print( f"[INFO ] Playing {note} for {duration} s" )
+    play(note, duration)
+    
+if __name__ == '__main__':
+    main()
