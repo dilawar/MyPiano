@@ -33,6 +33,6 @@ setuptools.setup(
     license='GPLv3',
     classifiers=classifiers,
     entry_points={
-        'console_scripts' : [ 'mypiano = MyPiano.main' ]
+        'console_scripts' : [ 'mypiano = MyPiano.__main__:main' ]
         },
 )

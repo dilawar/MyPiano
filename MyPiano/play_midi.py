@@ -12,8 +12,8 @@ __status__           = "Development"
 import sys
 import time
 import mido
-import midi2notes
-import play_note
+import MyPiano.midi2notes as midi2notes
+import MyPiano.play_note as play_note
 
 def play(midifile):
     t0 = time.time()
