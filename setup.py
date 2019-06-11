@@ -14,6 +14,7 @@ setuptools.setup(
     version = "0.0.1",
     description = "Play simple notes or MIDI files",
     long_description = readme,
+    long_description_content_type = 'text/markdown',
     packages = [ 'MyPiano' ],
     package_dir = { 'MyPiano' : 'MyPiano' },
     package_data = { 'MyPiano' : 'data/*/*/*.wav' },

@@ -1,6 +1,7 @@
 # MyPiano
 
-A simple terminal based piano for playing notes (not TUI/GUI) and MIDI files.
+A simple terminal based piano for playing notes and MIDI files. Not TUI/GUI
+available.
 
 # Install
 
@@ -25,6 +26,5 @@ optional arguments:
 
 ```
 
-When no option is given `mypiano` just play the note `A1`. To play a midi file,
-make sure you can play it with `timidity` or program `aplay` can play a wav
-file. 
+When no option is given `mypiano` just play the note `A1`. 
+
