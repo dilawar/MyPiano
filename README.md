@@ -28,3 +28,9 @@ optional arguments:
 
 When no option is given `mypiano` just play the note `A1`. 
 
+# CREDIT
+
+The piano sounds used in this project are from 
+https://freesound.org/people/TEDAgame/packs/25405/
+
+Many Thanks!
