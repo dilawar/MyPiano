@@ -1,3 +1,5 @@
+[![PyPI version](https://badge.fury.io/py/MyPiano.svg)](https://badge.fury.io/py/MyPiano)
+
 # MyPiano
 
 A simple terminal based piano for playing notes and MIDI files. Not TUI/GUI
